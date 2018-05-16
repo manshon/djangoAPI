@@ -1,0 +1,31 @@
+{% extends "core/base.html" %}
+{% block title %}TOP{% endblock %}
+{% block main %}
+
+<h2>顧客情報一覧</h2>
+
+<div>
+{% if not customer_list %}
+	<p>顧客情報はありません</p>
+{% else %}
+<table border="1">
+	<tr>
+		<th>顧客ID</th>
+		<th>氏名</th>
+		<th>Eメールアドレス</th>
+		<th>年齢</th>
+		<th>登録日時</th>
+	</tr>
+	{% for customer in customer_list %}
+	<tr>
+		<td>{{ customer.id }}</td>
+		<td>{{ customer.name }}</td>
+		<td>{{ customer.email }}</td>
+		<td>{{ customer.age }}歳</td>
+		<td>{{ customer.ctime|date:"Y/m/d" }}</td>
+	</tr>
+	{% endfor %}
+{% endif %}
+</div>
+
+{% endblock %}

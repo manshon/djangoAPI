@@ -1,0 +1,29 @@
+{% extends "core/base.html" %}
+{% block title %}{{ customer.name }}様の来店記録{% endblock %}
+{% block main %}
+
+<h2>{{ customer.name }}様の来店記録</h2>
+
+
+<div>
+	{% if not customer_logs %}
+	<p>来店記録はありません。</p>
+	{% else %}
+	<table border="1">
+		<tr>
+			<th>来店日</th>
+			<th>利用金額</th>
+			<th>メモ</th>
+		</tr>
+		{% for log in customer_logs %}
+		<tr>
+			<td>{{ log.created_at|date:"Y/m/d" }}</td>
+			<td>{{ log.amount }}円</td>
+			<td>{{ log.note|default:"" }}</td>
+		</tr>
+		{% endfor %}
+	{% endif %}
+</div>
+
+
+{% endblock %}
