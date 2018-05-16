@@ -13,6 +13,8 @@ class Customer(models.Model):
 
     @classmethod
     def search(cls, keyword):
+        if not keyword:
+            return []
         return cls.objects.filter(Q(name__contains=keyword) | Q(email__contains=keyword)).all()
 
     def to_dict(self):
